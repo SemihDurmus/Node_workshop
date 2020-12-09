@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes, Models } = require("sequelize");
+const { Sequelize, DataTypes, Model } = require("sequelize");
 
 const { DB_USERNAME, DB_PASSWORD, DB_HOSTNAME, DB_PORT, DB_NAME } = process.env;
 
@@ -23,9 +23,12 @@ const properties = {
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
-    field: "ID", //tabloda hangi isimle gozuksun?
+    field: "ID",
   },
-
+  status: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   productName: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -40,17 +43,13 @@ const properties = {
   stock: {
     type: DataTypes.INTEGER,
     allowNull: true,
-    defaultValue: 0,
     field: "Stock",
-  },
-  status: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    defaultValue: 0,
   },
   createdAt: {
     type: DataTypes.DATEONLY,
     defaultValue: Sequelize.NOW,
-    //defaultValue : Date.now(),
+    // defaultValue: Date.now(),
     field: "CreatedDate",
   },
   updatedAt: {
@@ -66,7 +65,7 @@ const properties = {
 const options = {
   sequelize,
   modelName: "Product",
-  //tableName: "Products",
+  // tableName: 'Items',
 };
 
 Product.init(properties, options);
